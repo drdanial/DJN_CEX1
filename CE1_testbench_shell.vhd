@@ -1,12 +1,12 @@
 --------------------------------------------------------------------------------
--- Company: 
--- Engineer:
+-- Company: USAFA 
+-- Engineer:  Danial Neebel
 --
 -- Create Date:   17:19:52 07/05/2012
--- Design Name:   
+-- Design Name:   Computer Exercise 1 testbench
 -- Module Name:   C:/My_Designs/Xilinx_14/CE1_Silva/CE1_testbench.vhd
 -- Project Name:  CE1_Silva
--- Target Device:  
+-- Target Device:  simulation
 -- Tool versions:  
 -- Description:   
 -- 
@@ -27,6 +27,9 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
+USE IEEE.STD_LOGIC_ARITH.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -56,15 +59,16 @@ ARCHITECTURE behavior OF CE1_testbench IS
 
  	--Outputs
    signal F : std_logic;
+	signal count : std_logic_vector(2 downto 0) := "000";
 
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
    uut: CE1_shell PORT MAP (
-          A => A,
-          B => B,
-          C => C,
+          A => count(2),
+          B => count(1),
+          C => count(0),
           F => F
         );
 
@@ -74,43 +78,56 @@ BEGIN
    stim_proc: process
    begin		
       -- First line of truth table
-		A <= '0';
-		B <= '0';
-		C <= '0';
-		wait for 100 ns;	
-		
-		-- Second line of truth table
-		A <= '0';
-		B <= '0';
-		C <= '1';
-		wait for 100 ns;	
+--		A <= '0';
+--		B <= '0';
+--		C <= '0';
+--		ASSERT F = '0' REPORT "Wrong value" SEVERITY ERROR;
+--		
+--		wait for 100 ns;	
+--		
 		
 		-- Complete_ the rest of the truth table below:
 
-		A <= '0';
-		B <= '1';
-		C <= '0';
-		wait for 100 ns;	
-		A <= '0';
-		B <= '1';
-		C <= '1';
-		wait for 100 ns;	
-		A <= '1';
-		B <= '0';
-		C <= '0';
-		wait for 100 ns;	
-		A <= '1';
-		B <= '0';
-		C <= '1';
-		wait for 100 ns;	
-		A <= '1';
-		B <= '1';
-		C <= '0';
-		wait for 100 ns;	
-		A <= '1';
-		B <= '1';
-		C <= '1';
-		wait for 100 ns;	
+		for I in 0 to 7 loop
+			wait for 100 ns;
+			REPORT "For A = "  
+						& std_logic'image(count(2))
+						& " B = "
+						& std_logic'image(count(1))
+						& " C = "
+						& std_logic'image(count(0))
+						& " F = "
+						& std_logic'image(F)
+				SEVERITY NOTE;
+				count <= count + 1;
+		end loop;
+		
+		wait;
+				
+--		A <= '0';
+--		B <= '1';
+--		C <= '0';
+--		wait for 100 ns;	
+--		A <= '0';
+--		B <= '1';
+--		C <= '1';
+--		wait for 100 ns;	
+--		A <= '1';
+--		B <= '0';
+--		C <= '0';
+--		wait for 100 ns;	
+--		A <= '1';
+--		B <= '0';
+--		C <= '1';
+--		wait for 100 ns;	
+--		A <= '1';
+--		B <= '1';
+--		C <= '0';
+--		wait for 100 ns;	
+--		A <= '1';
+--		B <= '1';
+--		C <= '1';
+--		wait for 100 ns;	
 
 				
    end process;
