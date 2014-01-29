@@ -1,6 +1,6 @@
 # Git In-Class Exercise
 
-TThis is the first computer exercise.  
+This is the first computer exercise.  
 
 ## The Basic Idea
 
@@ -12,5 +12,7 @@ implement and compile a VHDL design.
 - CE1_shell.vhd:  the VHDL file with the implementation
 - CE1_testbench.vhd:  VHDL test bench to test the implementation
 - testbenchoutput.jpg:  Screen shot of the test. 
+- MyAND2.vhd:  a sample and gate.  You should create your own.
+- OR and NOT implementations are NOT included. 
 ![test data](testbenchoutput.jpg)
 
